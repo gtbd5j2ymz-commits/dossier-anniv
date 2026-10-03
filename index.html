@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dossier confidentiel</title>
+<style>
+:root{color-scheme:light dark;--bg:#0b0d10;--card:#15181d;--text:#fff;--muted:#a9afb8;--line:#2b3038;--accent:#d9d9d9;--danger:#d77b7b}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+#app{min-height:100vh;background-color:var(--bg);padding:28px 18px 50px}
+.wrap{max-width:720px;margin:auto}.stamp{display:inline-block;border:1px solid #777;padding:7px 10px;letter-spacing:2px;font-size:11px;color:#ddd;transform:rotate(-2deg);margin-bottom:22px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:0 18px 50px #0007}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}.title{font-size:34px;line-height:1.05;margin:8px 0 10px}.subtitle{color:var(--muted);line-height:1.6}.lock{font-size:42px;margin:6px 0 4px}label{display:block;font-size:13px;color:var(--muted);margin:24px 0 8px}input{width:100%;padding:14px 15px;border-radius:12px;border:1px solid var(--line);background:#0e1013;color:var(--text);font-size:16px;outline:none}input:focus{border-color:#777}.fact input{color:#111 !important;background:#fff !important}button{width:100%;margin-top:12px;padding:14px;border:0;border-radius:12px;background:#eee;color:#111;font-weight:700;font-size:15px;cursor:pointer}button:hover{filter:brightness(.94)}.error{min-height:20px;color:var(--danger);font-size:13px;margin-top:10px}.hidden{display:none}.back{background:transparent;color:var(--text);border:1px solid var(--line)}.section{margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}.facts{display:grid;gap:10px;margin-top:14px}.fact,.fact *{color:#fff !important}.fact{padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#101216}.fact b{display:block;font-size:12px;margin-bottom:4px}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:12px;color:#fff;margin:4px 4px 0 0}.footer{margin-top:20px;text-align:center;color:var(--muted);font-size:12px}
+@media (prefers-color-scheme:light){:root{--bg:#f2f2f0;--card:#fff;--text:#171717;--muted:#6d7076;--line:#dedede}input{background:#fafafa;color:#171717}.stamp{color:#333;border-color:#999}button{background:#171717;color:#fff}.fact{color:#171717}.fact b{color:#555}.subtitle{color:#4f5257}}
+</style>
+</head>
+<body>
+<div id="app">
+<div class="wrap">
+<div class="stamp">DOSSIER CONFIDENTIEL · 20 ANS</div>
+<div id="login" class="card">
+  <div class="lock">🔒</div>
+  <div class="eyebrow">Accès restreint · 5 fichiers</div>
+  <h1 class="title">Dossier Clément</h1>
+  <p class="subtitle">Cinq codes. Cinq petits clins d'œil. Et évidemment, quelques informations classées confidentielles.</p>
+  <label for="code">Code d'accès</label>
+  <input id="code" autocomplete="off" placeholder="Indice : le jour où j'ai pu tester tes performances en galoche…" />
+  <button onclick="unlock()">ACCÉDER AU DOSSIER</button>
+  <div id="error" class="error"></div>
+</div>
+
+<div id="content" class="card hidden">
+  <div class="eyebrow">Accès autorisé ✓</div>
+  <h1 class="title">Bienvenue, pilote.</h1>
+  <p class="subtitle">Tu viens officiellement d'entrer dans ton dossier spécial 20 ans. Oui, quelqu'un s'est donné beaucoup trop de mal pour ça.</p>
+
+  <div class="section">
+    <div class="eyebrow">01 · Profil du sujet</div>
+    <div class="facts">
+      <div class="fact"><b>ÂGE</b>20 ans. Ça y est tu es officiellement vieux (la honte).</div>
+      <div class="fact"><b>STATUT</b>Presque titulaire du permis moto 🏍️ (mais pas titulaire d'une copine apparemment...#humour #dsljetrouvaisçadrôle..)</div>
+      <div class="fact"><b>NIVEAU DE CHANCE REQUIS</b>Très élevé. Heureusement, le dossier contient un porte-bonheur.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow">02 · Fichiers confidentiels</div>
+    <div class="facts">
+      <div class="fact"><b>PRIVATE JOKE #1</b>« Par pitié » — expression officiellement enregistrée dans le dossier et qui est entrée dans le langage courant au dépit de Philéas.</div>
+      <div class="fact"><b>IDENTITÉS SECRÈTES</b>Samsam &amp; Clemclem. Plus si secrètes que ça les identités...</div>
+      <div class="fact"><b>SKILL MÉCONNU</b>A la capacité de calculer ce qu'il veut (j'espère que depuis le temps tu as réussi à calculer l'angle de mes jambes en missio).</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow">03 · Mission permis 🏍️</div>
+    <div class="facts">
+      <div class="fact"><b>VÉHICULE CIBLÉ</b>Yamaha R1 ou Aprilia rs (de toute façon je vois pas de différence moi...)</div>
+      <div class="fact"><b>RAVITAILLEMENT OFFICIEL</b>Ciao Kombucha + chocolat. Une combinaison dont les archives confirment l'efficacité.</div>
+      <div class="fact"><b>BANDE-SON DE ROUTE</b><i>Sweet Sun</i> — Milky Chance.</div>
+      <div class="fact"><b>OBJECTIF</b>Réussir ton permis et profiter de ta future moto. 🍀</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow">04 · Qui a dit ça ?</div>
+    <p class="subtitle">Dernière petite vérification avant l'épreuve finale : à toi de retrouver qui a dit chaque phrase. 👀</p>
+    <div class="facts">
+      <div class="fact"><b>PHRASE #1</b>« Je peux te faire des bisous sur les pieds ? »<br><button type="button" onclick="chooseWho(1,'clem')">CLÉMENT</button><button type="button" onclick="chooseWho(1,'salome')">SALOMÉ</button><div id="who1" class="subtitle"></div></div>
+      <div class="fact"><b>PHRASE #2</b>« Ça pue tes pets »<br><button type="button" onclick="chooseWho(2,'clem')">CLÉMENT</button><button type="button" onclick="chooseWho(2,'salome')">SALOMÉ</button><div id="who2" class="subtitle"></div></div>
+      <div class="fact"><b>PHRASE #3</b>« Faut qu'on fasse un BeReal ! »<br><button type="button" onclick="chooseWho(3,'clem')">CLÉMENT</button><button type="button" onclick="chooseWho(3,'salome')">SALOMÉ</button><div id="who3" class="subtitle"></div></div>
+      <div class="fact"><b>PHRASE #4</b>« T'as ta batterie ? »<br><button type="button" onclick="chooseWho(4,'clem')">CLÉMENT</button><button type="button" onclick="chooseWho(4,'salome')">SALOMÉ</button><div id="who4" class="subtitle"></div></div>
+      <div class="fact"><b>PHRASE #5</b>« J'ai oublié mon chargeur... »<br><button type="button" onclick="chooseWho(5,'clem')">CLÉMENT</button><button type="button" onclick="chooseWho(5,'salome')">SALOMÉ</button><div id="who5" class="subtitle"></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow">05 · Archives de terrain</div>
+    <p class="subtitle">Dernière épreuve : 4 questions. Il t'en faut au moins 2 bonnes pour débloquer la récompense. 🎁 Si tu galères, chaque question a son petit indice.</p>
+    <div class="facts">
+      <div class="fact"><b>QUESTION 1</b>Comment s'est terminée notre soirée la plus aléatoire ?<br><input id="q1" autocomplete="off" placeholder="Ta réponse…" /><button type="button" onclick="showHint(1)">INDICE 👀</button><div id="hint1" class="subtitle hidden">T'as perdu une cheville.</div></div>
+      <div class="fact"><b>QUESTION 2</b>Que dit l'autre quand l'un commence à bégayer ?<br><input id="q2" autocomplete="off" placeholder="Ta réponse…" /><button type="button" onclick="showHint(2)">INDICE 👀</button><div id="hint2" class="subtitle hidden">C'est toi qui m'as fait découvrir cette ref.</div></div>
+      <div class="fact"><b>QUESTION 3</b>Quel est le dernier recours quand on n'a plus de mouchoir dans le sub ?<br><input id="q3" autocomplete="off" placeholder="Ta réponse…" /><button type="button" onclick="showHint(3)">INDICE 👀</button><div id="hint3" class="subtitle hidden">C'était pourtant fini le Covid.</div></div>
+      <div class="fact"><b>QUESTION 4</b>Quel était le meilleur moment quand on allait en soirée ensemble ?<br><input id="q4" autocomplete="off" placeholder="Ta réponse…" /><button type="button" onclick="showHint(4)">INDICE 👀</button><div id="hint4" class="subtitle hidden">J'avais trop peur mais je kiffais.</div></div>
+      <button onclick="checkQuiz()">VALIDER MES RÉPONSES</button>
+      <div id="quizResult" class="error"></div>
+      <div id="correction" class="hidden" style="padding:16px;border:1px solid var(--line);border-radius:12px;margin-top:10px"><b>CORRECTION 📋</b><br><br>1. Au CHU 🏥<br>2. « Bonne soirée AG ! » 😭<br>3. Des masques chirurgicaux 😷<br>4. Les retours en pony 🐴</div>
+      <div id="gift" class="hidden" style="padding:16px;border:1px solid var(--line);border-radius:12px;margin-top:10px;text-align:center"><b>🎁 RÉCOMPENSE DÉBLOQUÉE 🎁</b><br><br>Tu as réussi l'épreuve. Ton porte-bonheur pour le permis moto t'attend dans le vrai cadeau. 🍀🏍️<br><br><button type="button" onclick="showFinal()">DÉCLASSIFIER LE MESSAGE FINAL 💌</button></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="eyebrow">06 · Message final</div>
+    <div class="facts">
+      <div class="fact" style="text-align:center;padding:22px 18px">
+        <div style="font-size:34px;margin-bottom:10px">🎂🏍️🍀</div>
+        <b style="font-size:16px">Joyeux anniversaire Clemclem ! 🤍</b>
+        <p style="line-height:1.7;margin:14px 0 0">J'espère que tu as kiffé ce petit jeu qui regroupe un peu tous les petits moments qu'on a pu passer ensemble. Je suis sûre que tu vas dead ton permis donc maintenant j'ai plus qu'une hâte, que tu m'emmènes faire des tours en moto ! (Tqt je vais me contenter de ta nouvelle voiture trop stylée en attendant).</p>
+        <p style="line-height:1.7;margin:14px 0 0">Profite bien de tes 20 ans et de toutes les belles choses à venir dans ta vie. Tu es juste génial comme garçon et je suis trop heureuse de t'avoir rencontré ! Tu mérites touuut le bonheur du monde : aller dans l'école de tes rêves, voyager, trouver l'amour, t'entourer de personnes avec qui tu te sens toi-même et juste être le plus heureux !!</p>
+        <p style="line-height:1.7;margin:14px 0 0">Continue d'apporter de l'amour et de la joie autour de toi car je dois t'avouer que t'es particulièrement doué pour ça (et pas mal d'autres truc mais on va pas s'éterniser...).</p>
+        <p style="line-height:1.7;margin:14px 0 0">Enfin bref, j'ai juste hâte de voir comment Clément Abel Cloupet va grandir ! Gros bisous Clem !!<br>(#monbestieavecquelquesavantages)</p>
+        <p style="line-height:1.7;margin:14px 0 0"><b>Maintenant, va ouvrir ton vrai cadeau 🎁</b><br>(t'attends pas à un truc de fou mdrrr, j'ai toujours été nulle pour les cadeaux)</p>
+        <div style="margin-top:18px;font-size:13px;opacity:.8">— Samsam</div>
+      </div>
+    </div>
+  </div>
+  <div id="nextAccess" class="section hidden">
+    <div class="eyebrow">Accès suivant</div>
+    <label for="nextCode">Entrer le prochain code</label>
+    <input id="nextCode" autocomplete="off" placeholder="Entre le prochain code…" />
+    <button onclick="unlockNext()">OUVRIR L'ARCHIVE SUIVANTE</button>
+    <div id="nextError" class="error"></div>
+  </div>
+  <button class="back" onclick="location.reload()">FERMER LE DOSSIER</button>
+</div>
+<div class="footer">CLASSIFICATION : beaucoup trop mignon pour être supprimé.</div>
+</div>
+</div>
+<script>
+function unlock(){
+ const value=document.getElementById('code').value.trim().toLowerCase();
+ const error=document.getElementById('error');
+ const codes={'31mai2025':0,'mattmurphys':1,'mardi':2,'69':3,'hitler':4};
+ const titles=['Archive 01 · 31 MAI 2025','Archive 02 · MATT MURPHY\'S','Archive 03 · MARDI','Archive 04 · Qui a dit ça ?','Archive 05 · Archives de terrain'];
+ const intros=[
+   'Première archive déverrouillée. Le prochain indice est caché dans ce fichier.',
+   'Deuxième archive déverrouillée. Le prochain indice est caché dans ce fichier.',
+   'Troisième archive déverrouillée. Le prochain indice est caché dans ce fichier.',
+   'Quatrième archive déverrouillée. Plus qu’une étape avant la mission finale.',
+   'Dernière archive déverrouillée. Et maintenant, place à la mission finale.'
+ ];
+ if(value in codes){
+   document.getElementById('login').classList.add('hidden');
+   document.getElementById('content').classList.remove('hidden');
+   const sections=document.querySelectorAll('#content .section');
+   sections.forEach((el,i)=>el.classList.toggle('hidden',i!==codes[value]));
+   document.querySelector('#content .title').textContent=titles[codes[value]];
+   document.querySelector('#content .subtitle').textContent=intros[codes[value]];
+   document.getElementById('nextAccess').classList.toggle('hidden',codes[value]===4);
+   document.getElementById('nextCode').value='';
+   document.getElementById('nextError').textContent='';
+   document.getElementById('nextCode').placeholder=codes[value]===0?'Indice : le bar qui nous voyait chaque semaine…':codes[value]===1?'Indice : le jour rituel de l\'année dernière…':codes[value]===2?'Indice : ce dont tu rêvais vendredi soir…':codes[value]===3?'Indice : le surnom que tu donnes à mon bb d\'amour…':'';
+   error.textContent='';
+ } else error.textContent='Code incorrect. Les indices sont cachés dans le cadeau 👀';
+}
+function unlockNext(){
+ const value=document.getElementById('nextCode').value.trim().toLowerCase();
+ const codes={'31mai2025':0,'mattmurphys':1,'mardi':2,'69':3,'hitler':4};
+ const currentTitle=document.querySelector('#content .title').textContent;
+ const currentIndex=['Archive 01 · 31 MAI 2025','Archive 02 · MATT MURPHY\'S','Archive 03 · MARDI','Archive 04 · Qui a dit ça ?','Archive 05 · Archives de terrain'].indexOf(currentTitle);
+ const expectedNext=['mattmurphys','mardi','69','hitler'][currentIndex];
+ if(currentIndex<4 && value===expectedNext){
+   const sections=document.querySelectorAll('#content .section');
+   sections.forEach((el,i)=>el.classList.toggle('hidden',i!==currentIndex+1));
+   document.querySelector('#content .title').textContent=['Archive 01 · 31 MAI 2025','Archive 02 · MATT MURPHY\'S','Archive 03 · MARDI','Archive 04 · Qui a dit ça ?','Archive 05 · Archives de terrain'][currentIndex+1];
+   document.querySelector('#content .subtitle').textContent=['Première archive déverrouillée. Le prochain indice est caché dans ce fichier.','Deuxième archive déverrouillée. Le prochain indice est caché dans ce fichier.','Troisième archive déverrouillée. Le prochain indice est caché dans ce fichier.','Quatrième archive déverrouillée. Plus qu’une étape avant la mission finale.','Dernière archive déverrouillée. Et maintenant, place à la mission finale.'][currentIndex+1];
+   document.getElementById('nextAccess').classList.toggle('hidden',currentIndex+1===4);
+   document.getElementById('nextCode').value='';
+   document.getElementById('nextError').textContent='';
+   document.getElementById('nextCode').placeholder=currentIndex===0?'Indice : le jour rituel de l\'année dernière…':currentIndex===1?'Indice : ce dont tu rêvais vendredi soir…':currentIndex===2?'Indice : le surnom que tu donnes à mon bb d\'amour…':'';
+ } else {
+   document.getElementById('nextError').textContent='Code incorrect. Cherche bien l’indice dans cette archive 👀';
+ }
+}
+function chooseWho(n,who){
+ const correct={1:'clem',2:'salome',3:'salome',4:'clem',5:'clem'};
+ const el=document.getElementById('who'+n);
+ el.textContent=who===correct[n]?'✓ Bien joué. Tu connais tes propres archives.':'✗ Raté. Mais je te laisse une deuxième chance.';
+}
+function checkQuiz(){
+ const answers=[
+   document.getElementById('q1').value.trim().toLowerCase(),
+   document.getElementById('q2').value.trim().toLowerCase(),
+   document.getElementById('q3').value.trim().toLowerCase(),
+   document.getElementById('q4').value.trim().toLowerCase()
+ ];
+ const correct=[
+   answers[0].includes('chu') || answers[0].includes('hôpital') || answers[0].includes('hopital'),
+   answers[1].includes('bonne soirée ag') || answers[1].includes('bonne soiree ag'),
+   answers[2].includes('masque') && answers[2].includes('chirurg'),
+   answers[3].includes('retour') && answers[3].includes('pony')
+ ];
+ const score=correct.filter(Boolean).length;
+ const result=document.getElementById('quizResult');
+ const correction=document.getElementById('correction');
+ correction.classList.remove('hidden');
+ if(score>=2){
+   result.textContent='Score : '+score+'/4 — épreuve réussie. 👀';
+   result.style.color='';
+   document.getElementById('gift').classList.remove('hidden');
+ } else {
+   result.textContent='Score : '+score+'/4 — pas encore… Il te faut au moins 2 bonnes réponses. 😭';
+   document.getElementById('gift').classList.add('hidden');
+ }
+}
+function showFinal(){
+ const sections=document.querySelectorAll('#content .section');
+ sections.forEach((el,i)=>el.classList.toggle('hidden',i!==5));
+ document.querySelector('#content .title').textContent='Archive 06 · Message final';
+ document.querySelector('#content .subtitle').textContent='Dossier terminé. Celui-ci est pour toi. 🤍';
+ document.getElementById('nextAccess').classList.add('hidden');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function showHint(n){
+ document.getElementById('hint'+n).classList.remove('hidden');
+}
+document.getElementById('code').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
+document.getElementById('nextCode').addEventListener('keydown',e=>{if(e.key==='Enter')unlockNext()});
+</script>
+</body></html>
